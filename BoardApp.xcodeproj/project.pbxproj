@@ -15,6 +15,7 @@
 		C20B0BDB21349E480018E65C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C20B0BD921349E480018E65C /* LaunchScreen.storyboard */; };
 		C20B0BE621349E480018E65C /* BoardAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BE521349E480018E65C /* BoardAppTests.swift */; };
 		C20B0BF121349E480018E65C /* BoardAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BF021349E480018E65C /* BoardAppUITests.swift */; };
+		C20B0BFF21349F4C0018E65C /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BFE21349F4C0018E65C /* BoardModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C20B0BEC21349E480018E65C /* BoardAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoardAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20B0BF021349E480018E65C /* BoardAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardAppUITests.swift; sourceTree = "<group>"; };
 		C20B0BF221349E480018E65C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C20B0BFE21349F4C0018E65C /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				C20B0BCE21349E460018E65C /* AppDelegate.swift */,
+				C20B0BFE21349F4C0018E65C /* BoardModel.swift */,
 				C20B0BD021349E460018E65C /* MasterViewController.swift */,
 				C20B0BD221349E460018E65C /* DetailViewController.swift */,
 				C20B0BD421349E460018E65C /* Main.storyboard */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20B0BFF21349F4C0018E65C /* BoardModel.swift in Sources */,
 				C20B0BD321349E460018E65C /* DetailViewController.swift in Sources */,
 				C20B0BD121349E460018E65C /* MasterViewController.swift in Sources */,
 				C20B0BCF21349E460018E65C /* AppDelegate.swift in Sources */,
@@ -444,7 +448,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rodrigochousal.BoardApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -462,7 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rodrigochousal.BoardApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
