@@ -31,8 +31,6 @@ class Person {
     }
 }
 
-
-
 class Location {
     var name: Name
     var meetings: [Meeting]
@@ -63,6 +61,15 @@ class Meeting {
             }
             return duration
         }
+    }
+    var progress: TimeInterval? // Only relevant if meeting has begun
+    
+    func pause() {
+        // Record time since meeting started and pause UI
+    }
+    
+    func end() {
+        // Store meeting information in safe place for future reference
     }
     
     init(participants: [Person], topics: [Topic], location: Location) {
@@ -112,6 +119,10 @@ class Ballot {
             }
             return winningOption
         }
+    }
+    
+    func close() {
+        // Close ballot so no more votes are counted
     }
     
     init(question: String, vote: [BallotOption]) {
