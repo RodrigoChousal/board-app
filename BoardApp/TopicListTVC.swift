@@ -70,7 +70,7 @@ class TopicListTVC: UITableViewController {
         let topic = topics[indexPath.row]
         cell.titleLabel.text = topic.title
         cell.objectiveLabel.text = topic.objective
-        cell.responsibleLabel.text = "Roberto Rodriguez"
+        cell.responsibleLabel.text = topic.responsible.fullName
         cell.durationLabel.text = topic.duration.description
         cell.colorBarView.backgroundColor = topic.color
         return cell

@@ -14,6 +14,9 @@ class Person {
     var id: String
     var firstName: String
     var lastName: String
+    var fullName: String {
+        return firstName + " " + lastName
+    }
     var roles: [Role] // Must be array due to possibility of dual roles
     
     enum Role: String {
@@ -87,11 +90,13 @@ class Topic {
     var objective: String
     var pointsToDiscuss: [DiscussionPoint]
     var duration: TimeInterval
+    var responsible: Person
     var fileURLs: [String]?
     
-    init(color: UIColor, title: String, objective: String, pointsToDiscuss: [DiscussionPoint], duration: TimeInterval) {
+    init(color: UIColor, title: String, responsible: Person, objective: String, pointsToDiscuss: [DiscussionPoint], duration: TimeInterval) {
         self.color = color
         self.title = title
+        self.responsible = responsible
         self.objective = objective
         self.pointsToDiscuss = pointsToDiscuss
         self.duration = duration
@@ -100,6 +105,7 @@ class Topic {
 
 class DiscussionPoint {
     var point: String
+    var date: String? // Don't understand why this is needed but it is included in wireframe
     
     // Una vez que se haya discutido el punto, se llenan los variables:
     var agreement: String?

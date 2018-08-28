@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TopicDetailVC: UIViewController {
+class TopicDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var objectiveTextView: UITextView!
@@ -22,11 +22,29 @@ class TopicDetailVC: UIViewController {
         // FIXME: Background color of title view should be the same as topic color
         titleLabel.text = topic.title
         objectiveTextView.text = topic.objective
+        
+        discussionPointsTableView.delegate = self
+        discussionPointsTableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return topic.pointsToDiscuss.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DiscussionPointCell", for: indexPath) as! UITableViewCell
+        cell.textLabel?.text = topic.pointsToDiscuss[indexPath.row].point
+        cell.detailTextLabel?.text = topic.pointsToDiscuss[indexPath.row].point
+        return cell
     }
     
 
