@@ -58,7 +58,7 @@ class MeetingListVC: UIViewController {
                                                                                                 DiscussionPoint(point: "Punto 7"),
                                                                                                 DiscussionPoint(point: "Punto 8")], duration: duration2!)
         let duration3 = TimeInterval(exactly: 290)
-        let topic3 = Topic(color: UIColor.green, title: "Tema 3", objective: "Objetivo del tema 3", pointsToDiscuss: [DiscussionPoint(point: "Punto 9"),
+        let topic3 = Topic(color: UIColor.brown, title: "Tema 3", objective: "Objetivo del tema 3", pointsToDiscuss: [DiscussionPoint(point: "Punto 9"),
                                                                                                 DiscussionPoint(point: "Punto 10"),
                                                                                                 DiscussionPoint(point: "Punto 11"),
                                                                                                 DiscussionPoint(point: "Punto 12")], duration: duration3!)

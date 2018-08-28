@@ -11,7 +11,7 @@ import UIKit
 class TopicListTVC: UITableViewController {
     
     var detailViewController: TopicDetailVC? = nil
-    var topics = [Topic]()
+    var topics: [Topic]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +44,11 @@ class TopicListTVC: UITableViewController {
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "ShowDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = topics[indexPath.row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! TopicDetailVC
-                controller.topic = object
+                let topic = topics[indexPath.row]
+                let controller = segue.destination as! TopicDetailVC
+                controller.topic = topic
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -65,12 +65,19 @@ class TopicListTVC: UITableViewController {
         return topics.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        let object = topics[indexPath.row]
-        cell.textLabel!.text = object.title
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> TopicTVCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TopicCell", for: indexPath) as! TopicTVCell
+        let topic = topics[indexPath.row]
+        cell.titleLabel.text = topic.title
+        cell.objectiveLabel.text = topic.objective
+        cell.responsibleLabel.text = "Roberto Rodriguez"
+        cell.durationLabel.text = topic.duration.description
+        cell.colorBarView.backgroundColor = topic.color
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

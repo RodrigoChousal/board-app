@@ -43,8 +43,13 @@ class MeetingVC: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ContainerSegue" {
-            if let splitVC = segue.destination as? SplitVC {
-                splitVC.meeting = self.meeting
+            if let splitVC = segue.destination as? UISplitViewController {
+                // See Main.storyboard to understand hierarchy of object creation
+                if let listVC = (splitVC.childViewControllers[0] as? UINavigationController)?.topViewController as? TopicListTVC,
+                    let detailVC = splitVC.childViewControllers[1] as? TopicDetailVC {
+                    detailVC.topic = meeting.topics[0]
+                    listVC.topics = meeting.topics
+                }
             }
         }
     }
@@ -58,8 +63,13 @@ class MeetingVC: UIViewController {
             let realWidth = progressBar.frame.width * CGFloat(relativeWidth)
             let topicBar = UIView(frame: CGRect(x: xOffset, y: 0, width: realWidth, height: progressBar.frame.height))
             topicBar.backgroundColor = topic.color
-            topicBar.layer.cornerRadius = 4.0
+            topicBar.layer.cornerRadius = 10.0
             self.progressBar.addSubview(topicBar)
+            let topicDurationLabel = UILabel(frame: CGRect(x: xOffset, y: -20, width: realWidth, height: progressBar.frame.height))
+            topicDurationLabel.textAlignment = .right
+            topicDurationLabel.backgroundColor = .yellow
+            topicDurationLabel.text = topic.duration.description
+            self.progressBar.addSubview(topicDurationLabel)
             xOffset += realWidth
         }
     }

@@ -19,8 +19,9 @@ class TopicDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // FIXME: Background color of title view should be the same as topic color
+        titleLabel.text = topic.title
+        objectiveTextView.text = topic.objective
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,20 +41,26 @@ class TopicDetailVC: UIViewController {
     */
     
     @IBAction func editTitlePressed(_ sender: Any) {
+        print("Edit Title Pressed")
     }
     
     @IBAction func editObjectivePressed(_ sender: Any) {
+        print("Edit Objective Pressed")
     }
     
     @IBAction func editDiscussionPointsPressed(_ sender: Any) {
+        print("Edit Discussion Points Pressed")
     }
     
     @IBAction func closeVotingPressed(_ sender: Any) {
+        print("Close Voting Pressed")
     }
     
     @IBAction func folderPressed(_ sender: Any) {
+        print("Folder Icon Pressed")
     }
     
     @IBAction func attachmentsPressed(_ sender: Any) {
+        print("Paperclip Icon Pressed")
     }
 }
