@@ -32,17 +32,17 @@ class Person {
 }
 
 class Location {
-    var name: Name
+    var name: ValidName
     var meetings: [Meeting]
     
-    enum Name: String {
+    enum ValidName: String {
         case sala1 = "SALA 1"
         case sala2 = "SALA 2"
         case sala3 = "SALA 3"
         case sala4 = "SALA 4"
     }
     
-    init(name: Name, meetings: [Meeting] ) {
+    init(name: ValidName, meetings: [Meeting] ) {
         self.name = name
         self.meetings = meetings
     }

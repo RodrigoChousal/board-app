@@ -10,14 +10,15 @@
 		0454A254D1B0F2924A2E4349 /* Pods_BoardAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1176AE6BF670F6774FF72BEE /* Pods_BoardAppUITests.framework */; };
 		7CC0B4D6C1325364C3E42CAA /* Pods_BoardAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2BF2CD386ED2B25894AF63C /* Pods_BoardAppTests.framework */; };
 		C20B0BCF21349E460018E65C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BCE21349E460018E65C /* AppDelegate.swift */; };
-		C20B0BD121349E460018E65C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BD021349E460018E65C /* MasterViewController.swift */; };
-		C20B0BD321349E460018E65C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BD221349E460018E65C /* DetailViewController.swift */; };
 		C20B0BD621349E460018E65C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C20B0BD421349E460018E65C /* Main.storyboard */; };
 		C20B0BD821349E480018E65C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20B0BD721349E480018E65C /* Assets.xcassets */; };
 		C20B0BDB21349E480018E65C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C20B0BD921349E480018E65C /* LaunchScreen.storyboard */; };
 		C20B0BE621349E480018E65C /* BoardAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BE521349E480018E65C /* BoardAppTests.swift */; };
 		C20B0BF121349E480018E65C /* BoardAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BF021349E480018E65C /* BoardAppUITests.swift */; };
 		C20B0BFF21349F4C0018E65C /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BFE21349F4C0018E65C /* BoardModel.swift */; };
+		C2BE2C7F2135B526008B7FBD /* TopicDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2C7E2135B526008B7FBD /* TopicDetailVC.swift */; };
+		C2BE2C812135B761008B7FBD /* TopicListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2C802135B761008B7FBD /* TopicListTVC.swift */; };
+		C2BE2C832135B825008B7FBD /* MeetingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2C822135B825008B7FBD /* MeetingVC.swift */; };
 		EF4EC32B7D32C039E88F9B6C /* Pods_BoardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67D1C3E288576B43CE17288 /* Pods_BoardApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,8 +49,6 @@
 		BB0FFF6A3BDD071B3855372E /* Pods-BoardApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoardApp/Pods-BoardApp.release.xcconfig"; sourceTree = "<group>"; };
 		C20B0BCB21349E460018E65C /* BoardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20B0BCE21349E460018E65C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C20B0BD021349E460018E65C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		C20B0BD221349E460018E65C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C20B0BD521349E460018E65C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C20B0BD721349E480018E65C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C20B0BDA21349E480018E65C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,6 +60,9 @@
 		C20B0BF021349E480018E65C /* BoardAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardAppUITests.swift; sourceTree = "<group>"; };
 		C20B0BF221349E480018E65C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C20B0BFE21349F4C0018E65C /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		C2BE2C7E2135B526008B7FBD /* TopicDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailVC.swift; sourceTree = "<group>"; };
+		C2BE2C802135B761008B7FBD /* TopicListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListTVC.swift; sourceTree = "<group>"; };
+		C2BE2C822135B825008B7FBD /* MeetingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingVC.swift; sourceTree = "<group>"; };
 		D2E9D568C5E1529DD8F52CA7 /* Pods-BoardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoardApp/Pods-BoardApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DAB727C3F2B153576544389A /* Pods-BoardAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoardAppTests/Pods-BoardAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,8 +135,9 @@
 			children = (
 				C20B0BCE21349E460018E65C /* AppDelegate.swift */,
 				C20B0BFE21349F4C0018E65C /* BoardModel.swift */,
-				C20B0BD021349E460018E65C /* MasterViewController.swift */,
-				C20B0BD221349E460018E65C /* DetailViewController.swift */,
+				C2BE2C822135B825008B7FBD /* MeetingVC.swift */,
+				C2BE2C802135B761008B7FBD /* TopicListTVC.swift */,
+				C2BE2C7E2135B526008B7FBD /* TopicDetailVC.swift */,
 				C20B0BD421349E460018E65C /* Main.storyboard */,
 				C20B0BD721349E480018E65C /* Assets.xcassets */,
 				C20B0BD921349E480018E65C /* LaunchScreen.storyboard */,
@@ -390,9 +393,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C20B0BFF21349F4C0018E65C /* BoardModel.swift in Sources */,
-				C20B0BD321349E460018E65C /* DetailViewController.swift in Sources */,
-				C20B0BD121349E460018E65C /* MasterViewController.swift in Sources */,
+				C2BE2C812135B761008B7FBD /* TopicListTVC.swift in Sources */,
+				C2BE2C7F2135B526008B7FBD /* TopicDetailVC.swift in Sources */,
 				C20B0BCF21349E460018E65C /* AppDelegate.swift in Sources */,
+				C2BE2C832135B825008B7FBD /* MeetingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +573,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HSZTC8Z4L4;
 				INFOPLIST_FILE = BoardApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,6 +593,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HSZTC8Z4L4;
 				INFOPLIST_FILE = BoardApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
