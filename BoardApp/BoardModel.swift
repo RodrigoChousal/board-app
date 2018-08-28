@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Person {
     
@@ -33,7 +34,7 @@ class Person {
 
 class Location {
     var name: ValidName
-    var meetings: [Meeting]
+    var meetings: [Meeting]?
     
     enum ValidName: String {
         case sala1 = "SALA 1"
@@ -42,13 +43,13 @@ class Location {
         case sala4 = "SALA 4"
     }
     
-    init(name: ValidName, meetings: [Meeting] ) {
+    init(name: ValidName) {
         self.name = name
-        self.meetings = meetings
     }
 }
 
 class Meeting {
+    var title: String
     var participants: [Person]
     var topics: [Topic]
     var location: Location
@@ -72,7 +73,8 @@ class Meeting {
         // Store meeting information in safe place for future reference
     }
     
-    init(participants: [Person], topics: [Topic], location: Location) {
+    init(title: String, participants: [Person], topics: [Topic], location: Location) {
+        self.title = title
         self.participants = participants
         self.topics = topics
         self.location = location
@@ -80,13 +82,15 @@ class Meeting {
 }
 
 class Topic {
+    var color: UIColor
     var title: String
     var objective: String
     var pointsToDiscuss: [DiscussionPoint]
     var duration: TimeInterval
     var fileURLs: [String]?
     
-    init(title: String, objective: String, pointsToDiscuss: [DiscussionPoint], duration: TimeInterval) {
+    init(color: UIColor, title: String, objective: String, pointsToDiscuss: [DiscussionPoint], duration: TimeInterval) {
+        self.color = color
         self.title = title
         self.objective = objective
         self.pointsToDiscuss = pointsToDiscuss

@@ -15,7 +15,7 @@ class TopicDetailVC: UIViewController {
     @IBOutlet weak var discussionPointsTableView: UITableView!
     @IBOutlet weak var questionsTableView: UITableView!
     
-    var topic: Topic = Topic(title: "", objective: "", pointsToDiscuss: [DiscussionPoint(point: "")], duration: TimeInterval(exactly: 2)!)
+    var topic: Topic!
     
     override func viewDidLoad() {
         super.viewDidLoad()

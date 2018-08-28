@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8dR-Bh-8sU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zHi-gy-t1N">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Meeting ListVC-->
+        <scene sceneID="AAN-UX-aH0">
+            <objects>
+                <viewController id="zHi-gy-t1N" customClass="MeetingListVC" customModule="BoardApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="40O-5A-9Y7">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uet-FB-eb8">
+                                <rect key="frame" x="241" y="184" width="542" height="564"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUJ-nz-lp9">
+                                <rect key="frame" x="430" y="118" width="165" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Entrar a junta de prueba"/>
+                                <connections>
+                                    <segue destination="8dR-Bh-8sU" kind="show" identifier="TestMeeting" id="Ea9-xT-53r"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Juntas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohz-Eh-TSD">
+                                <rect key="frame" x="43" y="54" width="123" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="hnI-E3-GRB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BIL-x1-ps6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1975.1953124999998" y="-573.4375"/>
+        </scene>
         <!--MeetingVC-->
         <scene sceneID="SVM-kG-hnP">
             <objects>
@@ -21,7 +58,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLH-sL-X75">
                                 <rect key="frame" x="0.0" y="123" width="1024" height="566"/>
                                 <connections>
-                                    <segue destination="jI3-IN-RxM" kind="embed" id="Ubc-ph-zmA"/>
+                                    <segue destination="jI3-IN-RxM" kind="embed" identifier="ContainerSegue" id="Ubc-ph-zmA"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0w2-f9-7H1">
@@ -77,7 +114,7 @@
                                         <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWU-P7-OOw">
                                 <rect key="frame" x="0.0" y="689" width="1024" height="79"/>
@@ -154,6 +191,7 @@
                         <outlet property="bottomControlView" destination="FWU-P7-OOw" id="r5d-5P-Tx0"/>
                         <outlet property="dateLabel" destination="ADM-zA-qpg" id="Get-f4-oPc"/>
                         <outlet property="progressBar" destination="4qz-ub-xTm" id="yUs-Dp-9fy"/>
+                        <outlet property="splitContentView" destination="FLH-sL-X75" id="NoW-mT-92e"/>
                         <outlet property="statusLabel" destination="4y4-J7-Vhf" id="MK6-Cd-Jlz"/>
                         <outlet property="timeRemainingLabel" destination="hIf-lM-Q8y" id="dJb-5Y-0Lq"/>
                         <outlet property="titleLabel" destination="cRT-wy-QCg" id="mPx-fW-1Ox"/>
@@ -388,7 +426,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6wq-NS-1uD">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="6wq-NS-1uD">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6wq-NS-1uD" id="0VI-Fl-jvW">
@@ -424,10 +462,10 @@
             </objects>
             <point key="canvasLocation" x="273" y="-936"/>
         </scene>
-        <!--Split View Controller-->
+        <!--SplitVC-->
         <scene sceneID="hDT-vk-oUI">
             <objects>
-                <splitViewController id="jI3-IN-RxM" sceneMemberID="viewController">
+                <splitViewController id="jI3-IN-RxM" customClass="SplitVC" customModule="BoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="jGY-MA-Y3w" kind="relationship" relationship="masterViewController" id="sjq-mM-1xJ"/>
                         <segue destination="GV1-cB-gZc" kind="relationship" relationship="detailViewController" id="XzE-8f-pJY"/>
