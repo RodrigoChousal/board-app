@@ -41,7 +41,7 @@ class TopicDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DiscussionPointCell", for: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DiscussionPointCell", for: indexPath)
         cell.textLabel?.text = topic.pointsToDiscuss[indexPath.row].point
         cell.detailTextLabel?.text = topic.pointsToDiscuss[indexPath.row].point
         return cell

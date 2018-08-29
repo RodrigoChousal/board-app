@@ -8,6 +8,13 @@
 
 import Foundation
 import UIKit
+import Firebase
+
+class Global {
+    static var localUser: LocalUser? // Optional because users can enter as visitors
+    static let databaseRef = Database.database().reference()
+    static let storageRef = Storage.storage().reference()
+}
 
 class Person {
     
@@ -17,7 +24,6 @@ class Person {
     var fullName: String {
         return firstName + " " + lastName
     }
-    var roles: [Role] // Must be array due to possibility of dual roles
     
     enum Role: String {
         case consejero = "CONSEJERO"
@@ -27,12 +33,26 @@ class Person {
         case invitado = "INVITADO"
     }
     
-    init(firstName: String, lastName: String, roles: [Role]) {
+    init(firstName: String, lastName: String) {
         self.firstName = firstName
         self.lastName = lastName
-        self.roles = roles
         self.id = generateId()
     }
+}
+
+// Userful for storing authentication credentials
+class LocalUser: Person {
+    var username: String
+    
+    init(username: String, firstName: String, lastName: String) {
+        self.username = username
+        super.init(firstName: firstName, lastName: lastName)
+    }
+}
+
+struct Credentials {
+    var email: String
+    var password: String
 }
 
 class Location {
@@ -53,7 +73,7 @@ class Location {
 
 class Meeting {
     var title: String
-    var participants: [Person]
+    var participants: [Person.Role : Person]
     var topics: [Topic]
     var location: Location
     var totalDuration: TimeInterval {
@@ -76,7 +96,7 @@ class Meeting {
         // Store meeting information in safe place for future reference
     }
     
-    init(title: String, participants: [Person], topics: [Topic], location: Location) {
+    init(title: String, participants: [Person.Role : Person], topics: [Topic], location: Location) {
         self.title = title
         self.participants = participants
         self.topics = topics

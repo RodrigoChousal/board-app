@@ -21,6 +21,9 @@
 		C2BE2C832135B825008B7FBD /* MeetingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2C822135B825008B7FBD /* MeetingVC.swift */; };
 		C2BE2C852135BE4C008B7FBD /* MeetingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2C842135BE4C008B7FBD /* MeetingListVC.swift */; };
 		C2BE2CC52135F6C5008B7FBD /* TopicTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2CC42135F6C5008B7FBD /* TopicTVCell.swift */; };
+		C2BE2CC7213602F7008B7FBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2BE2CC6213602F6008B7FBD /* GoogleService-Info.plist */; };
+		C2BE2CC921360A2F008B7FBD /* AccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2CC821360A2F008B7FBD /* AccessVC.swift */; };
+		C2BE2CCD21360D05008B7FBD /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2CCC21360D05008B7FBD /* KeychainManager.swift */; };
 		EF4EC32B7D32C039E88F9B6C /* Pods_BoardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67D1C3E288576B43CE17288 /* Pods_BoardApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,9 @@
 		C2BE2C822135B825008B7FBD /* MeetingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingVC.swift; sourceTree = "<group>"; };
 		C2BE2C842135BE4C008B7FBD /* MeetingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingListVC.swift; sourceTree = "<group>"; };
 		C2BE2CC42135F6C5008B7FBD /* TopicTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTVCell.swift; sourceTree = "<group>"; };
+		C2BE2CC6213602F6008B7FBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C2BE2CC821360A2F008B7FBD /* AccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessVC.swift; sourceTree = "<group>"; };
+		C2BE2CCC21360D05008B7FBD /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		D2E9D568C5E1529DD8F52CA7 /* Pods-BoardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoardApp/Pods-BoardApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DAB727C3F2B153576544389A /* Pods-BoardAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoardAppTests/Pods-BoardAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,8 +143,10 @@
 		C20B0BCD21349E460018E65C /* BoardApp */ = {
 			isa = PBXGroup;
 			children = (
-				C20B0BCE21349E460018E65C /* AppDelegate.swift */,
 				C20B0BFE21349F4C0018E65C /* BoardModel.swift */,
+				C2BE2CCC21360D05008B7FBD /* KeychainManager.swift */,
+				C20B0BCE21349E460018E65C /* AppDelegate.swift */,
+				C2BE2CC821360A2F008B7FBD /* AccessVC.swift */,
 				C2BE2C842135BE4C008B7FBD /* MeetingListVC.swift */,
 				C2BE2C822135B825008B7FBD /* MeetingVC.swift */,
 				C2BE2C802135B761008B7FBD /* TopicListTVC.swift */,
@@ -147,6 +155,7 @@
 				C20B0BD421349E460018E65C /* Main.storyboard */,
 				C20B0BD721349E480018E65C /* Assets.xcassets */,
 				C20B0BD921349E480018E65C /* LaunchScreen.storyboard */,
+				C2BE2CC6213602F6008B7FBD /* GoogleService-Info.plist */,
 				C20B0BDC21349E480018E65C /* Info.plist */,
 			);
 			path = BoardApp;
@@ -289,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C20B0BDB21349E480018E65C /* LaunchScreen.storyboard in Resources */,
+				C2BE2CC7213602F7008B7FBD /* GoogleService-Info.plist in Resources */,
 				C20B0BD821349E480018E65C /* Assets.xcassets in Resources */,
 				C20B0BD621349E460018E65C /* Main.storyboard in Resources */,
 			);
@@ -402,6 +412,8 @@
 				C2BE2C812135B761008B7FBD /* TopicListTVC.swift in Sources */,
 				C2BE2C852135BE4C008B7FBD /* MeetingListVC.swift in Sources */,
 				C2BE2C7F2135B526008B7FBD /* TopicDetailVC.swift in Sources */,
+				C2BE2CCD21360D05008B7FBD /* KeychainManager.swift in Sources */,
+				C2BE2CC921360A2F008B7FBD /* AccessVC.swift in Sources */,
 				C20B0BCF21349E460018E65C /* AppDelegate.swift in Sources */,
 				C2BE2C832135B825008B7FBD /* MeetingVC.swift in Sources */,
 				C2BE2CC52135F6C5008B7FBD /* TopicTVCell.swift in Sources */,
