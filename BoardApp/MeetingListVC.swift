@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MeetingListVC: UIViewController {
 
@@ -33,6 +34,18 @@ class MeetingListVC: UIViewController {
             // Template meeting for testing:
             let meetingVC = segue.destination as! MeetingVC
             meetingVC.meeting = generateTestMeeting()
+        }
+    }
+    
+    // MARK: - Action Methods
+    
+    @IBAction func signOutPressed(_ sender: Any) {
+        if let _ = try? Auth.auth().signOut(), let _ = try? KeychainManager.deleteCredentials(credentials: KeychainManager.fetchCredentials()) {
+            self.dismiss(animated: true) {
+                print("Deleted local credentials, user signed out, and dismissed view controller")
+            }
+        } else {
+            print("There was an error signing out!")
         }
     }
     

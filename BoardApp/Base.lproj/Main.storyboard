@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o56-Er-vJu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--AccessVC-->
         <scene sceneID="8XZ-oR-Uqz">
             <objects>
-                <viewController id="o56-Er-vJu" customClass="AccessVC" customModule="BoardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccessVC" id="o56-Er-vJu" customClass="AccessVC" customModule="BoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v4o-Ds-DXy">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +70,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signInPressed:" destination="o56-Er-vJu" eventType="touchUpInside" id="gbN-0u-93G"/>
-                                    <segue destination="zHi-gy-t1N" kind="show" identifier="AccessSegue" id="sr9-1C-CyS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -80,6 +79,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="5mo-K1-sUb" id="yfT-ce-hav"/>
                         <outlet property="passwordTextField" destination="LsV-KF-GeP" id="urD-mj-W8E"/>
+                        <segue destination="zHi-gy-t1N" kind="show" identifier="AccessSegue" id="Jop-DF-rKp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CIb-zN-hjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -89,7 +89,7 @@
         <!--Meeting ListVC-->
         <scene sceneID="AAN-UX-aH0">
             <objects>
-                <viewController id="zHi-gy-t1N" customClass="MeetingListVC" customModule="BoardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MeetingListVC" id="zHi-gy-t1N" customClass="MeetingListVC" customModule="BoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="40O-5A-9Y7">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,6 +118,9 @@
                                 <rect key="frame" x="889" y="54" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutPressed:" destination="zHi-gy-t1N" eventType="touchUpInside" id="w1x-hs-iOE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -624,6 +627,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XzE-8f-pJY"/>
-        <segue reference="sr9-1C-CyS"/>
+        <segue reference="Jop-DF-rKp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -36,18 +36,26 @@ class AccessVC: UIViewController {
     */
 
     @IBAction func signInPressed(_ sender: Any) {
+        
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         Auth.auth().signIn(withEmail: email, password: password) { (dataResult, error) in
             if let error = error { // Login failed
                 
                 // Print error and display alert
+                print("ERROR: ")
                 print(error)
                 
             } else { // Login successful
                 
+                print("Login successful")
+                // Store user credentials in keychain
+                let credentials = Credentials(email: email, password: password)
+                KeychainManager.storeCredentials(credentials: credentials)
+                
                 // Store important user data
                 if let fireUser = Auth.auth().currentUser {
+                    print("Successfully captured current user")
                     Global.databaseRef.child("users").child(fireUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                         let value = snapshot.value as? NSDictionary
                         let firstName = value?["firstName"] as? String ?? ""
@@ -55,13 +63,10 @@ class AccessVC: UIViewController {
                         let email = value?["email"] as? String ?? ""
                         Global.localUser = LocalUser(username: email,
                                                      firstName: firstName,
-                                                     lastName: lastName)
-                        
-                        // Store user credentials in keychain
-                        let credentials = Credentials(email: email, password: password)
-                        KeychainManager.storeCredentials(credentials: credentials)
+                                                     lastName: lastName)                        
                         
                     }) { (error) in
+                        print("Error after sign in!")
                         print(error.localizedDescription)
                     }
                 }

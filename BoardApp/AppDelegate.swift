@@ -16,7 +16,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         FirebaseApp.configure()
+        
+        let credentials = KeychainManager.fetchCredentials()
+        Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { (dataResult, error) in
+            if let error = error { // No credentials
+                
+                print("")
+                print("No credentials found in Keychain, first time signing in to Firebase")
+                print(error)
+                print("")
+                
+                // Show user to AccessVC without automatic access
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let accessVC = mainStoryboard.instantiateViewController(withIdentifier: "AccessVC") as! AccessVC
+                self.window?.rootViewController = accessVC
+                self.window?.makeKeyAndVisible()
+                
+            } else { // Login successful
+                print("User has been successfully signed in to Firebase")
+                // Store important user data
+                if let fireUser = Auth.auth().currentUser {
+                    Global.databaseRef.child("users").child(fireUser.uid).observe(DataEventType.value, with: { (snapshot) in
+                        let value = snapshot.value as? NSDictionary
+                        let firstName = value?["firstName"] as? String ?? ""
+                        let lastName = value?["lastName"] as? String ?? ""
+                        let email = value?["email"] as? String ?? ""
+                        Global.localUser = LocalUser(username: email,
+                                                     firstName: firstName,
+                                                     lastName: lastName)
+                    }) { (error) in
+                        print("ERROR:" + error.localizedDescription)
+                    }
+                }
+                
+                // Show user to AccessVC with automatic access
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let meetingListVC = mainStoryboard.instantiateViewController(withIdentifier: "MeetingListVC") as! MeetingListVC
+                self.window?.rootViewController = meetingListVC
+                self.window?.makeKeyAndVisible()
+            }
+        }
+
+        
         return true
     }
 
