@@ -28,6 +28,10 @@ class MeetingVC: UIViewController {
         timeRemainingLabel.text = meeting.totalDuration.description
         statusLabel.text = "Por Comenzar" // FIXME: This should probably be a button at the beginning, so secretary can press "Empezar"
         
+        // Show certain controls if user is of role: 'Secretary'
+        if let user = Global.localUser {
+            let role = user.meetings
+        }
         
         setupProgressBar()
     }
@@ -73,6 +77,8 @@ class MeetingVC: UIViewController {
             xOffset += realWidth
         }
     }
+    
+    // MARK: - Action Methods
 
     @IBAction func closeMeetingPressed(_ sender: Any) {
     }

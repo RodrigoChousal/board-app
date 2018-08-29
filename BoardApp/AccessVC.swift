@@ -15,7 +15,6 @@ class AccessVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -34,6 +33,8 @@ class AccessVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Action Methods
 
     @IBAction func signInPressed(_ sender: Any) {
         
@@ -61,21 +62,20 @@ class AccessVC: UIViewController {
                         let firstName = value?["firstName"] as? String ?? ""
                         let lastName = value?["lastName"] as? String ?? ""
                         let email = value?["email"] as? String ?? ""
+                        let rawMeetings = value?["meetings"] as? NSArray ?? [String()]
                         Global.localUser = LocalUser(username: email,
                                                      firstName: firstName,
-                                                     lastName: lastName)                        
-                        
+                                                     lastName: lastName,
+                                                     meetings: DatabaseManager.stringsToMeetings(rawMeetings: rawMeetings))
                     }) { (error) in
                         print("Error after sign in!")
                         print(error.localizedDescription)
                     }
                 }
-                
                 // Show guests inside
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "AccessSegue", sender: self)
                 }
-                
             }
         }
     }

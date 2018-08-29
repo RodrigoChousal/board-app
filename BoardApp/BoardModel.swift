@@ -43,9 +43,11 @@ class Person {
 // Userful for storing authentication credentials
 class LocalUser: Person {
     var username: String
+    var meetings: [Meeting]
     
-    init(username: String, firstName: String, lastName: String) {
+    init(username: String, firstName: String, lastName: String, meetings: [Meeting]) {
         self.username = username
+        self.meetings = meetings
         super.init(firstName: firstName, lastName: lastName)
     }
 }
@@ -76,6 +78,7 @@ class Meeting {
     var participants: [Person.Role : Person]
     var topics: [Topic]
     var location: Location
+    var timeDate: Date
     var totalDuration: TimeInterval {
         get {
             // Return added seconds from topics
@@ -84,6 +87,45 @@ class Meeting {
                 duration += topic.duration
             }
             return duration
+        }
+    }
+    var participantList: String {
+        get {
+            var list = ""
+            var count = 0
+            for participant in participants {
+                list += participant.value.fullName
+                count += 1
+                if count != participants.count {
+                    list += ", "
+                }
+            }
+            return list
+        }
+    }
+    var topicList: String {
+        get {
+            var list = ""
+            var count = 0
+            for topic in topics {
+                list += topic.title
+                count += 1
+                if count != topics.count {
+                    list += ", "
+                }
+            }
+            return list
+        }
+    }
+    var fileCount: Int {
+        get {
+            var count = 0
+            for topic in topics {
+                if let list = topic.fileURLs {
+                    count += list.count
+                }
+            }
+            return count
         }
     }
     var progress: TimeInterval? // Only relevant if meeting has begun
@@ -96,11 +138,20 @@ class Meeting {
         // Store meeting information in safe place for future reference
     }
     
-    init(title: String, participants: [Person.Role : Person], topics: [Topic], location: Location) {
+    init(title: String, timeDate: Date, participants: [Person.Role : Person], topics: [Topic], location: Location) {
         self.title = title
+        self.timeDate = timeDate
         self.participants = participants
         self.topics = topics
         self.location = location
+    }
+    
+    init(fromDictionary meetingsDictionary: NSDictionary) {
+        self.title = DatabaseManager.validTitle(fromString: meetingsDictionary.value(forKey: "title") as? String ?? "")
+        self.timeDate = DatabaseManager.validDate(fromString: meetingsDictionary.value(forKey: "timeDate") as? String ?? "")
+        self.participants = DatabaseManager.validParticipants(fromDictionary: meetingsDictionary.value(forKey: "participants") as? NSDictionary ?? NSDictionary())
+        self.topics = DatabaseManager.validTopics(fromArray: meetingsDictionary.value(forKey: "topics") as? NSArray ?? NSArray())
+        self.location = DatabaseManager.validLocation(fromString: meetingsDictionary.value(forKey: "location") as? String ?? "")
     }
 }
 

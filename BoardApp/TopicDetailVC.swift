@@ -57,6 +57,8 @@ class TopicDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         // Pass the selected object to the new view controller.
     }
     */
+
+    // MARK: - Action Methods
     
     @IBAction func editTitlePressed(_ sender: Any) {
         print("Edit Title Pressed")
