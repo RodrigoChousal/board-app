@@ -18,55 +18,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+		
+		// To hide this warning and ensure your app does not break, you need to add the following code to your app before calling any other Cloud Firestore methods:
+		let db = Firestore.firestore()
+		let settings = db.settings
+		settings.areTimestampsInSnapshotsEnabled = true
+		db.settings = settings
         
         let credentials = KeychainManager.fetchCredentials()
         Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { (dataResult, error) in
+			
             if let error = error { // No credentials
-                
-                print("")
+				
                 print("No credentials found in Keychain, first time signing in to Firebase")
                 print(error)
-                print("")
-                
                 // Show user to AccessVC without automatic access
                 self.window = UIWindow(frame: UIScreen.main.bounds)
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let accessVC = mainStoryboard.instantiateViewController(withIdentifier: "AccessVC") as! AccessVC
                 self.window?.rootViewController = accessVC
                 self.window?.makeKeyAndVisible()
-                
+				
             } else { // Login successful
+				
                 print("User has been successfully signed in to Firebase")
-                // Store important user data
+                // Store important user data locally
                 if let fireUser = Auth.auth().currentUser {
-                    Global.databaseRef.child("users").child(fireUser.uid).observe(DataEventType.value, with: { (snapshot) in
-                        let value = snapshot.value as? NSDictionary
-                        let firstName = value?["firstName"] as? String ?? ""
-                        let lastName = value?["lastName"] as? String ?? ""
-                        let email = value?["email"] as? String ?? ""
-                        let rawMeetings = value?["meetings"] as? NSArray ?? [String()]
-                        Global.localUser = LocalUser(username: email,
-                                                     firstName: firstName,
-                                                     lastName: lastName,
-                                                     meetings: DatabaseManager.stringsToMeetings(rawMeetings: rawMeetings))
-                    }) { (error) in
-                        print("ERROR:" + error.localizedDescription)
-                    }
+					Global.usersCollectionRef.document(fireUser.uid).getDocument(completion: { (document, error) in
+						if let document = document, document.exists {
+							if let userDictionary = document.data()! as NSDictionary? {
+								Global.localUser = DatabaseManager.validUser(fromDictionary: userDictionary)
+								// Show user to AccessVC with automatic access
+								self.window = UIWindow(frame: UIScreen.main.bounds)
+								let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+								let meetingListVC = mainStoryboard.instantiateViewController(withIdentifier: "MeetingListVC") as! MeetingListVC
+								self.window?.rootViewController = meetingListVC
+								self.window?.makeKeyAndVisible()
+							} else {
+								print("ERROR: Invalid user dictionary fetched from Firestore")
+							}
+						} else {
+							print("Document does not exist")
+						}
+					})
+                } else {
+                    print("No current user found in Auth request")
                 }
-                
-                // Show user to AccessVC with automatic access
-                self.window = UIWindow(frame: UIScreen.main.bounds)
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let meetingListVC = mainStoryboard.instantiateViewController(withIdentifier: "MeetingListVC") as! MeetingListVC
-                if let user = Global.localUser {
-                    meetingListVC.user = user
-                }
-                self.window?.rootViewController = meetingListVC
-                self.window?.makeKeyAndVisible()
             }
         }
-
-        
         return true
     }
 
@@ -91,39 +90,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    // MARK: - Temporary
-    
-    func generateTestMeeting() -> Meeting {
-        
-        let person1 = Person(firstName: "Jesús", lastName: "Parás")
-        let person2 = Person(firstName: "Roberto", lastName: "Marcos")
-        let person3 = Person(firstName: "Manuel", lastName: "Doblado")
-        let person4 = Person(firstName: "Alfredo", lastName: "Peña")
-        let participants = [Person.Role.administrador : person1, Person.Role.consejero : person2, Person.Role.secretario : person3, Person.Role.presidente : person4]
-        
-        let duration1 = TimeInterval(exactly: 30)
-        let topic1 = Topic(color: UIColor.red, title: "Tema 1", responsible: person4, objective: "Objetivo del tema", pointsToDiscuss: [DiscussionPoint(point: "Punto 1"),
-                                                                                                                                        DiscussionPoint(point: "Punto 2"),
-                                                                                                                                        DiscussionPoint(point: "Punto 3"),
-                                                                                                                                        DiscussionPoint(point: "Punto 4")], duration: duration1!)
-        
-        let duration2 = TimeInterval(exactly: 25)
-        let topic2 = Topic(color: UIColor.gray, title: "Tema 2", responsible: person3, objective: "Objetivo del tema 2", pointsToDiscuss: [DiscussionPoint(point: "Punto 5"),
-                                                                                                                                           DiscussionPoint(point: "Punto 6"),
-                                                                                                                                           DiscussionPoint(point: "Punto 7"),
-                                                                                                                                           DiscussionPoint(point: "Punto 8")], duration: duration2!)
-        let duration3 = TimeInterval(exactly: 290)
-        let topic3 = Topic(color: UIColor.brown, title: "Tema 3", responsible: person1, objective: "Objetivo del tema 3", pointsToDiscuss: [DiscussionPoint(point: "Punto 9"),
-                                                                                                                                            DiscussionPoint(point: "Punto 10"),
-                                                                                                                                            DiscussionPoint(point: "Punto 11"),
-                                                                                                                                            DiscussionPoint(point: "Punto 12")], duration: duration3!)
-        let topics = [topic1, topic2, topic3]
-        
-        let location = Location(name: Location.ValidName.sala1)
-        
-        return Meeting(title: "Test Meeting", timeDate: Date(), participants: participants, topics: topics, location: location)
-    }
-
 }
 

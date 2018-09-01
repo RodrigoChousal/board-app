@@ -11,19 +11,25 @@ import UIKit
 import Firebase
 
 class Global {
-    static var localUser: LocalUser? // Optional because users can enter as visitors
+    static var localUser: User! // FIXME: Not sure if this is right
     static let databaseRef = Database.database().reference()
     static let storageRef = Storage.storage().reference()
+	
+	static let usersCollectionRef = Firestore.firestore().collection("users")
+	static let meetingsCollectionRef = Firestore.firestore().collection("meetings")
+	static let locationsCollectionRef = Firestore.firestore().collection("locations")
 }
 
-class Person {
-    
-    var id: String
+class User {
+    var uniqueID: String
     var firstName: String
     var lastName: String
     var fullName: String {
         return firstName + " " + lastName
     }
+    var email: String
+	var meetingsIdList: [String]
+	var meetings: [Meeting]?
     
     enum Role: String {
         case consejero = "CONSEJERO"
@@ -31,24 +37,15 @@ class Person {
         case secretario = "SECRETARIO"
         case administrador = "ADMINISTRADOR"
         case invitado = "INVITADO"
+        case desconocido = "DESCONOCIDO"
     }
     
-    init(firstName: String, lastName: String) {
+    init(email: String, firstName: String, lastName: String, meetingsIdList: [String]) {
+        self.email = email
         self.firstName = firstName
         self.lastName = lastName
-        self.id = generateId()
-    }
-}
-
-// Userful for storing authentication credentials
-class LocalUser: Person {
-    var username: String
-    var meetings: [Meeting]
-    
-    init(username: String, firstName: String, lastName: String, meetings: [Meeting]) {
-        self.username = username
-        self.meetings = meetings
-        super.init(firstName: firstName, lastName: lastName)
+        self.meetingsIdList = meetingsIdList
+        self.uniqueID = generateId() // FIXME: Should fetch ID...
     }
 }
 
@@ -58,30 +55,32 @@ struct Credentials {
 }
 
 class Location {
+    var uniqueID: String
     var name: ValidName
-    var meetings: [Meeting]?
     
     enum ValidName: String {
         case sala1 = "SALA 1"
         case sala2 = "SALA 2"
         case sala3 = "SALA 3"
         case sala4 = "SALA 4"
+        case desconocida = "DESCONOCIDA"
     }
     
-    init(name: ValidName) {
+    init(uniqueID: String, name: ValidName) {
+        self.uniqueID = uniqueID
         self.name = name
     }
 }
 
 class Meeting {
+    var uniqueID: String
     var title: String
-    var participants: [Person.Role : Person]
+    var participants: [User.Role : User]
     var topics: [Topic]
     var location: Location
     var timeDate: Date
     var totalDuration: TimeInterval {
         get {
-            // Return added seconds from topics
             var duration = TimeInterval()
             for topic in topics {
                 duration += topic.duration
@@ -103,6 +102,15 @@ class Meeting {
             return list
         }
     }
+	var participantIdList: [String] {
+		get {
+			var list = [String]()
+			for participant in participants {
+				list.append(participant.value.uniqueID)
+			}
+			return list
+		}
+	}
     var topicList: String {
         get {
             var list = ""
@@ -129,7 +137,7 @@ class Meeting {
         }
     }
     var progress: TimeInterval? // Only relevant if meeting has begun
-    
+	
     func pause() {
         // Record time since meeting started and pause UI
     }
@@ -138,20 +146,13 @@ class Meeting {
         // Store meeting information in safe place for future reference
     }
     
-    init(title: String, timeDate: Date, participants: [Person.Role : Person], topics: [Topic], location: Location) {
+    init(uniqueID: String, title: String, timeDate: Date, participants: [User.Role : User], topics: [Topic], location: Location) {
+        self.uniqueID = uniqueID
         self.title = title
         self.timeDate = timeDate
         self.participants = participants
         self.topics = topics
         self.location = location
-    }
-    
-    init(fromDictionary meetingsDictionary: NSDictionary) {
-        self.title = DatabaseManager.validTitle(fromString: meetingsDictionary.value(forKey: "title") as? String ?? "")
-        self.timeDate = DatabaseManager.validDate(fromString: meetingsDictionary.value(forKey: "timeDate") as? String ?? "")
-        self.participants = DatabaseManager.validParticipants(fromDictionary: meetingsDictionary.value(forKey: "participants") as? NSDictionary ?? NSDictionary())
-        self.topics = DatabaseManager.validTopics(fromArray: meetingsDictionary.value(forKey: "topics") as? NSArray ?? NSArray())
-        self.location = DatabaseManager.validLocation(fromString: meetingsDictionary.value(forKey: "location") as? String ?? "")
     }
 }
 
@@ -161,10 +162,10 @@ class Topic {
     var objective: String
     var pointsToDiscuss: [DiscussionPoint]
     var duration: TimeInterval
-    var responsible: Person
+    var responsible: User
     var fileURLs: [String]?
     
-    init(color: UIColor, title: String, responsible: Person, objective: String, pointsToDiscuss: [DiscussionPoint], duration: TimeInterval) {
+    init(color: UIColor, title: String, responsible: User, objective: String, pointsToDiscuss: [DiscussionPoint], duration: TimeInterval) {
         self.color = color
         self.title = title
         self.responsible = responsible

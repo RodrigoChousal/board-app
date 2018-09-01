@@ -49,7 +49,6 @@ class AccessVC: UIViewController {
                 
             } else { // Login successful
                 
-                print("Login successful")
                 // Store user credentials in keychain
                 let credentials = Credentials(email: email, password: password)
                 KeychainManager.storeCredentials(credentials: credentials)
@@ -62,11 +61,11 @@ class AccessVC: UIViewController {
                         let firstName = value?["firstName"] as? String ?? ""
                         let lastName = value?["lastName"] as? String ?? ""
                         let email = value?["email"] as? String ?? ""
-                        let rawMeetings = value?["meetings"] as? NSArray ?? [String()]
-                        Global.localUser = LocalUser(username: email,
-                                                     firstName: firstName,
-                                                     lastName: lastName,
-                                                     meetings: DatabaseManager.stringsToMeetings(rawMeetings: rawMeetings))
+                        let meetingsIdList = value?["meetings"] as? [String] ?? [String]()
+                        Global.localUser = User(email: email,
+                                                firstName: firstName,
+                                                lastName: lastName,
+                                                meetingsIdList: meetingsIdList)
                     }) { (error) in
                         print("Error after sign in!")
                         print(error.localizedDescription)

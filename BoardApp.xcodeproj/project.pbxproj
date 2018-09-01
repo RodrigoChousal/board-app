@@ -16,6 +16,7 @@
 		C20B0BE621349E480018E65C /* BoardAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BE521349E480018E65C /* BoardAppTests.swift */; };
 		C20B0BF121349E480018E65C /* BoardAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BF021349E480018E65C /* BoardAppUITests.swift */; };
 		C20B0BFF21349F4C0018E65C /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20B0BFE21349F4C0018E65C /* BoardModel.swift */; };
+		C29C85B9213B1613005B5955 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C85B8213B1613005B5955 /* SignUpVC.swift */; };
 		C2BE2C7F2135B526008B7FBD /* TopicDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2C7E2135B526008B7FBD /* TopicDetailVC.swift */; };
 		C2BE2C812135B761008B7FBD /* TopicListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2C802135B761008B7FBD /* TopicListTVC.swift */; };
 		C2BE2C832135B825008B7FBD /* MeetingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BE2C822135B825008B7FBD /* MeetingVC.swift */; };
@@ -67,6 +68,7 @@
 		C20B0BF021349E480018E65C /* BoardAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardAppUITests.swift; sourceTree = "<group>"; };
 		C20B0BF221349E480018E65C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C20B0BFE21349F4C0018E65C /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		C29C85B8213B1613005B5955 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		C2BE2C7E2135B526008B7FBD /* TopicDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailVC.swift; sourceTree = "<group>"; };
 		C2BE2C802135B761008B7FBD /* TopicListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListTVC.swift; sourceTree = "<group>"; };
 		C2BE2C822135B825008B7FBD /* MeetingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingVC.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				C2BE2CCC21360D05008B7FBD /* KeychainManager.swift */,
 				C20B0BCE21349E460018E65C /* AppDelegate.swift */,
 				C2BE2CC821360A2F008B7FBD /* AccessVC.swift */,
+				C29C85B8213B1613005B5955 /* SignUpVC.swift */,
 				C2BE2C842135BE4C008B7FBD /* MeetingListVC.swift */,
 				C2FC4CD72137151E000A4BC6 /* MeetingTVCell.swift */,
 				C2BE2C822135B825008B7FBD /* MeetingVC.swift */,
@@ -334,17 +337,29 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BoardApp/Pods-BoardApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -418,6 +433,7 @@
 				C2FC4CDC21374897000A4BC6 /* DatabaseManager.swift in Sources */,
 				C2FC4CD82137151E000A4BC6 /* MeetingTVCell.swift in Sources */,
 				C2BE2C812135B761008B7FBD /* TopicListTVC.swift in Sources */,
+				C29C85B9213B1613005B5955 /* SignUpVC.swift in Sources */,
 				C2BE2C852135BE4C008B7FBD /* MeetingListVC.swift in Sources */,
 				C2BE2C7F2135B526008B7FBD /* TopicDetailVC.swift in Sources */,
 				C2BE2CCD21360D05008B7FBD /* KeychainManager.swift in Sources */,
