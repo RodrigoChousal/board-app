@@ -21,9 +21,13 @@ class MeetingListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		fetchUserMeetings {
-			print("Reloaded data")
-			self.meetingTableView.reloadData()
+		if Global.localUser.meetingsIdList.count > 1 {
+			fetchUserMeetings {
+				print("Reloaded data")
+				self.meetingTableView.reloadData()
+			}
+		} else {
+			// Fill table view with "No meetings in near future"
 		}
 		
 		meetingTableView.delegate = self

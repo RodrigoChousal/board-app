@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-		
 		// To hide this warning and ensure your app does not break, you need to add the following code to your app before calling any other Cloud Firestore methods:
 		let db = Firestore.firestore()
 		let settings = db.settings

@@ -53,6 +53,9 @@
                                 <state key="normal" title="Crear Cuenta">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpPressed:" destination="M4A-N8-0qo" eventType="touchUpInside" id="j5c-uY-2WX"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fQK-LA-E2e">
                                 <rect key="frame" x="198" y="508" width="628" height="30"/>
@@ -96,14 +99,36 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eWJ-PI-hEm">
+                                <rect key="frame" x="198" y="575" width="628" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repetir" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtE-QZ-DDe">
+                                <rect key="frame" x="210" y="546" width="55" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.15677651762962341" green="0.160838782787323" blue="0.16081714630126953" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="rzr-0Z-Bvl"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="DLq-Zi-4aE" id="UtO-Md-QPJ"/>
+                        <outlet property="firstNameField" destination="AHb-1D-Tzo" id="QrH-PQ-udf"/>
+                        <outlet property="firstPasswordField" destination="fQK-LA-E2e" id="Lxn-0J-EZl"/>
+                        <outlet property="lastNameField" destination="und-yc-y9I" id="jTF-gM-QGP"/>
+                        <outlet property="secondPasswordField" destination="eWJ-PI-hEm" id="Jli-7V-3Oh"/>
+                        <segue destination="zHi-gy-t1N" kind="show" identifier="AccessSegue" id="Vd6-xI-Qee"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22B-gv-N2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2356.0546875" y="-1273.4375"/>
+            <point key="canvasLocation" x="-2356" y="-1340"/>
         </scene>
         <!--AccessVC-->
         <scene sceneID="8XZ-oR-Uqz">
@@ -805,6 +830,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XzE-8f-pJY"/>
-        <segue reference="Jop-DF-rKp"/>
+        <segue reference="Vd6-xI-Qee"/>
     </inferredMetricsTieBreakers>
 </document>
