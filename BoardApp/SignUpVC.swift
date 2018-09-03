@@ -42,6 +42,10 @@ class SignUpVC: UIViewController {
 	
 	// MARK: - Action Methods
 	
+	@IBAction func cancelPressed(_ sender: Any) {
+		self.dismiss(animated: true, completion: nil)
+	}
+	
 	@IBAction func signUpPressed(_ sender: Any) {
 		
 		let formIncomplete = checkFormCompletion()

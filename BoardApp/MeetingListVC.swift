@@ -92,11 +92,14 @@ class MeetingListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @IBAction func signOutPressed(_ sender: Any) {
+		view.showLoadingIndicator(withMessage: "Cerrando sesión...")
         if let _ = try? Auth.auth().signOut(), let _ = try? KeychainManager.deleteCredentials(credentials: KeychainManager.fetchCredentials()) {
             self.dismiss(animated: true) {
+				self.view.stopLoadingIndicator()
                 print("Deleted local credentials, user signed out, and dismissed view controller")
             }
         } else {
+			self.view.stopLoadingIndicator()
             print("There was an error signing out!")
         }
     }

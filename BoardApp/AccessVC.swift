@@ -37,12 +37,15 @@ class AccessVC: UIViewController {
     // MARK: - Action Methods
 
     @IBAction func signInPressed(_ sender: Any) {
+		
+		view.showLoadingIndicator(withMessage: "Iniciando sesión...")
         
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         Auth.auth().signIn(withEmail: email, password: password) { (dataResult, error) in
             if let error = error { // Login failed
-                
+				
+				self.view.stopLoadingIndicator()
                 // Print error and display alert
                 print("ERROR: ")
                 print(error)
@@ -56,24 +59,29 @@ class AccessVC: UIViewController {
                 // Store important user data
                 if let fireUser = Auth.auth().currentUser {
                     print("Successfully captured current user")
-                    Global.databaseRef.child("users").child(fireUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                        let value = snapshot.value as? NSDictionary
-                        let firstName = value?["firstName"] as? String ?? ""
-                        let lastName = value?["lastName"] as? String ?? ""
-                        let email = value?["email"] as? String ?? ""
-                        let meetingsIdList = value?["meetings"] as? [String] ?? [String]()
-                        Global.localUser = User(email: email,
-                                                firstName: firstName,
-                                                lastName: lastName,
-                                                meetingsIdList: meetingsIdList)
-                    }) { (error) in
-                        print("Error after sign in!")
-                        print(error.localizedDescription)
-                    }
-                }
-                // Show guests inside
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "AccessSegue", sender: self)
+					Global.usersCollectionRef.document(fireUser.uid).getDocument(completion: { (document, error) in
+						if let error = error {
+							print("Error after sign in!")
+							print(error.localizedDescription)
+						} else {
+							let value = document?.data() as NSDictionary?
+							let firstName = value?["firstName"] as? String ?? ""
+							let lastName = value?["lastName"] as? String ?? ""
+							let email = value?["email"] as? String ?? ""
+							let meetingsIdList = value?["meetingsIdList"] as? [String] ?? [String]()
+							print(meetingsIdList.description)
+							Global.localUser = User(email: email,
+													firstName: firstName,
+													lastName: lastName,
+													meetingsIdList: meetingsIdList)
+							// Show guests inside
+							DispatchQueue.main.async {
+								self.view.stopLoadingIndicator()
+								self.performSegue(withIdentifier: "AccessSegue", sender: self)
+							}
+
+						}
+					})
                 }
             }
         }

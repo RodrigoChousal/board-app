@@ -82,10 +82,13 @@ class MeetingVC: UIViewController {
 
     @IBAction func closeMeetingPressed(_ sender: Any) {
     }
+	
     @IBAction func nextTopicPressed(_ sender: Any) {
     }
+	
     @IBAction func pauseTopicPressed(_ sender: Any) {
     }
+	
     @IBAction func finishTopicPressed(_ sender: Any) {
     }
 }
