@@ -44,10 +44,7 @@ class SignUpVC: UIViewController {
 	
 	@IBAction func signUpPressed(_ sender: Any) {
 		
-		print("Sign up pressed...")
-		
 		let formIncomplete = checkFormCompletion()
-		
 		if formIncomplete > 0 { // A field or payment is missing
 			
 			var missingField = ""
@@ -66,10 +63,8 @@ class SignUpVC: UIViewController {
 			default:
 				missingField = "sus datos"
 			}
-			
 			print("There is a missing field...")
-			
-//			SCLAlertView().showWarning("Ups!", subTitle: "Favor de ingresar \(missingField)")
+			SCLAlertView().showWarning("Ups!", subTitle: "Favor de ingresar \(missingField)")
 			
 		} else if (self.firstPasswordField.text != self.secondPasswordField.text) {
 			
@@ -104,11 +99,11 @@ class SignUpVC: UIViewController {
 					
 					// Store details in d cloud:
 					if let localUser = Global.localUser {
-						Global.databaseRef.child("users").child(fireUser.uid)
-							.setValue(["email" : localUser.email,
-									   "firstName" : localUser.firstName,
-									   "lastName" : localUser.lastName,
-									   "meetingsIdList" : localUser.meetingsIdList])
+						Global.usersCollectionRef.document(fireUser.uid)
+							.setData(["email" : localUser.email,
+									  "firstName" : localUser.firstName,
+									  "lastName" : localUser.lastName,
+									  "meetingsIdList" : localUser.meetingsIdList])
 						let changeRequest = fireUser.createProfileChangeRequest()
 						changeRequest.displayName = firstName + " " + lastName
 					}
@@ -121,9 +116,9 @@ class SignUpVC: UIViewController {
 					}
 					
 				} else {
-//					self.view.stopLoadingIndicator()
+					self.view.stopLoadingIndicator()
 					if let error = error {
-//						SCLAlertView().showWarning("Ups!", subTitle: error.localizedDescription)
+						SCLAlertView().showWarning("Ups!", subTitle: error.localizedDescription)
 						print("Error with current USER!")
 						print(error.localizedDescription)
 					}

@@ -23,8 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		let settings = db.settings
 		settings.areTimestampsInSnapshotsEnabled = true
 		db.settings = settings
-        
+		
         let credentials = KeychainManager.fetchCredentials()
+		print(credentials.email)
+		print(credentials.password)
         Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { (dataResult, error) in
 			
             if let error = error { // No credentials
